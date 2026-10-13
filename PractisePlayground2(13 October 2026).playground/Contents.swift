@@ -244,5 +244,19 @@ let captainFirstSortedUsingFunctionalProgramming = team2.sorted { // Trailing Cl
     return $0 < $1
 }
 
-
 print(captainFirstSorted)
+
+// More examples for Xcode
+let tOnly = team2.filter { a in // Good Easy to Read
+    return a.hasPrefix("T")
+}
+
+// filter function - allows to filter out the array to find some items that meet out creteria
+let aOnlyUsingFunctionalProgramming = team2.filter { $0.hasPrefix("A") } // Functional Programming
+
+print(tOnly)
+print(aOnlyUsingFunctionalProgramming)
+
+// Map Function // Transform all the members of the array using this function and returns a modified Array
+let mappedArray = team2.map { $0.uppercased() }
+print(mappedArray)
