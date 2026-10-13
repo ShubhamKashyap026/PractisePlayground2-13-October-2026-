@@ -260,3 +260,51 @@ print(aOnlyUsingFunctionalProgramming)
 // Map Function // Transform all the members of the array using this function and returns a modified Array
 let mappedArray = team2.map { $0.uppercased() }
 print(mappedArray)
+
+//
+
+func makeArray(size: Int, using generator: () -> Int) -> [Int] { // Functions as parameters
+    var numbers = [Int]()
+    
+    for _ in 0..<size {
+        let newNumber = generator()
+        numbers.append(newNumber)
+    }
+    
+    return numbers
+}
+
+let array1 = makeArray(size: 5) {
+    return 5
+}
+
+print(array1)
+
+let rolls = makeArray(size: 10) {
+    return Int.random(in: 1...20)
+}
+
+print(rolls)
+
+func doImportantWork(first: () -> Void, second: () -> Void, third: () -> Void) {
+    print("First Work")
+    first()
+    
+    print("Second Work")
+    second()
+
+    print("Third Work")
+    third()
+    
+    print("Done")
+}
+
+let chainCalls = doImportantWork {
+    print("This is the first work")
+} second: {
+    print("This is the second work")
+} third: {
+    print("This is the third work")
+}
+
+print(chainCalls)
