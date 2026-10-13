@@ -299,7 +299,7 @@ func doImportantWork(first: () -> Void, second: () -> Void, third: () -> Void) {
     print("Done")
 }
 
-let chainCalls = doImportantWork {
+let chainCalls: () = doImportantWork {
     print("This is the first work")
 } second: {
     print("This is the second work")
@@ -308,3 +308,276 @@ let chainCalls = doImportantWork {
 }
 
 print(chainCalls)
+
+// Why Closures are needed
+// Another common example is making network requests. Your average iPhone can do several billion things a second, but connecting to a server in Japan takes half a second or more – it’s almost glacial compared to the speed things happen on your device. So, when we request data from the internet we do so with closures: “please fetch this data, and when you’re done run this closure.” Again, it means we don’t force our user interface to freeze while some slow work is happening.
+
+
+var swift = {
+    print("Cool - I can use closures!")
+}
+
+func writeCode(using language: () -> Void) {
+    language()
+    print("That'll be eleventy billion dollars, please.")
+}
+
+// More Examples of Closures
+
+let swanDive = {
+    print("SWAN DIVE!")
+}
+func performDive(type dive: () -> Void) {
+    print("I'm climbing up to the top")
+    dive()
+}
+performDive(type: swanDive)
+
+
+let helicopterTravel = {
+    print("Get to the chopper!")
+}
+func travel(by travelMeans: () -> Void) {
+    print("Let's go on vacation...")
+    travelMeans()
+}
+travel(by: helicopterTravel)
+
+
+
+var goOnBike = {
+    print("I'll take my bicycle.")
+}
+func race(using vehicleType: () -> Void) {
+    print("Let's race!")
+    vehicleType()
+}
+
+
+
+
+var payCash = {
+    print("Here's the money.")
+}
+func buyClothes(item: String, using payment: () -> Void) {
+    print("I'll take this \(item).")
+    payment()
+}
+buyClothes(item: "jacket", using: payCash)
+
+
+let resignation = { (name: String) in
+    print("Dear \(name), I'm outta here!")
+}
+func printDocument(contents: (String) -> Void) {
+    print("Connecting to printer...")
+    print("Sending document...")
+    contents("Hello")
+}
+printDocument(contents: resignation)
+
+
+let driveSafely = { () -> String in
+    return "I'm being a considerate driver"
+}
+func drive(using driving: () -> String) {
+    print("Let's get in the car")
+    driving()
+    print("We're there!")
+}
+drive(using: driveSafely)
+
+
+var learnWithUnwrap = {
+    print("Hey, this is fun!")
+}
+func learnSwift(using approach: () -> Void) {
+    print("I'm learning Swift")
+    approach()
+}
+learnSwift(using: learnWithUnwrap)
+
+var playWithDog = {
+    print("Fetch!")
+}
+func play(using playType: () -> Void) -> String {
+    print("Let's play a game")
+    playType()
+    
+    return "Cool"
+}
+play(using: playWithDog)
+
+
+
+
+
+let evilRobot = {
+    print("EXTERMINATE")
+}
+func buildRobot(using personality: () -> Void) {
+    print("Time to turn on the robot!")
+    personality()
+}
+buildRobot(using: evilRobot)
+
+
+
+
+func holdClass(name: String, lesson: () -> Void) {
+    print("Welcome to \(name)!")
+    lesson()
+    print("Make sure your homework is done by next week.")
+}
+
+holdClass(name: "Philosophy 101") {
+    print("All we are is dust in the wind, dude.")
+}
+
+
+
+
+
+func phoneFriend(conversation: () -> Void) {
+    print("Calling 555-1234...")
+    conversation()
+}
+
+phoneFriend {
+    print("Hello!")
+    print("A foreign prince wants to give you $5 million.")
+    print("What are your bank details?")
+}
+
+
+
+
+func doTricks(_ tricks: () -> Void) {
+    print("Start recording now!")
+    tricks()
+    print("Did you get all that?")
+}
+
+doTricks {
+    print("2")
+}
+
+
+
+
+
+
+func tendGarden(activities: () -> Void) {
+    print("I love gardening")
+    activities()
+}
+
+tendGarden {
+    print("Let's grow some roses!")
+}
+
+
+
+
+func makeCake(instructions: () -> Void) {
+    print("Wash hands")
+    print("Collect ingredients")
+    instructions()
+    print("Here's your cake!")
+}
+makeCake {
+    print("Mix egg and flour")
+}
+
+
+
+func brewTea(steps: () -> Void) {
+    print("Get tea")
+    print("Get milk")
+    print("Get sugar")
+    steps()
+}
+brewTea {
+    print("Brew tea in teapot.")
+    print("Add milk to cup")
+    print("Pour tea into cup")
+    print("Add sugar to taste.")
+}
+
+
+
+func assembleToy(instruction: () -> Void) {
+    instruction()
+    print("It's done!")
+}
+assembleToy {
+    print("Grok the glib")
+    print("Flop the flip")
+    print("Click the clack")
+}
+
+
+
+func knitSweater(then: () -> Void) {
+    print("Buy wool")
+    for _ in 1...100 {
+        print("Knit knit knit...")
+    }
+    then()
+}
+knitSweater {
+    print("Who wants to buy a sweater?")
+}
+
+
+
+func repeatAction(count: Int, action: () -> Void) {
+    for _ in 0..<count {
+        action()
+    }
+}
+repeatAction(count: 5) {
+    print("Hello, world!")
+}
+
+
+
+
+func clean(tasks: () -> Void) {
+    print("It's time to clean the house.")
+    tasks()
+}
+
+clean {
+    print("I'm going to clean the kitchen.")
+    print("I'm going to tidy the study.")
+    print("I'm going to nuke the kids' room.")
+}
+
+
+
+
+func goCamping(then action: () -> Void) {
+    print("We're going camping!")
+    action()
+}
+goCamping {
+    print("Sing songs")
+    print("Put up tent")
+    print("Attempt to sleep")
+}
+
+
+
+
+func goOnVacation(to destination: String, _ activities: () -> Void) {
+    print("Packing bags...")
+    print("Getting on plane to \(destination)...")
+    activities()
+    print("Time to go home!")
+}
+goOnVacation(to: "Mexico") {
+    print("Go sightseeing")
+    print("Relax in sun")
+    print("Go hiking")
+}
